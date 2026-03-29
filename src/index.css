@@ -124,12 +124,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-main);
 }
 
-h1 { font-size: clamp(3rem, 7vw, 5rem); letter-spacing: -0.04em; }
-h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -0.03em; }
-h3 { font-size: 1.75rem; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.5rem, 8vw, 5rem); letter-spacing: -0.04em; }
+h2 { font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: -0.03em; }
+h3 { font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -0.02em; }
 
 p {
-  color: var(--text-muted);
+  color: var(--text-dim);
+  font-size: clamp(1rem, 2vw, 1.125rem);
 }
 
 /* Glassmorphism */
@@ -160,10 +161,17 @@ p {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
 }
 
 .section {
-  padding: 8rem 0;
+  padding: clamp(4rem, 10vw, 8rem) 0;
   position: relative;
 }
 
@@ -174,14 +182,14 @@ nav {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 90px;
+  height: clamp(70px, 10vw, 90px);
   display: flex;
   align-items: center;
   transition: var(--transition);
 }
 
 nav.scrolled {
-  height: 70px;
+  height: clamp(60px, 8vw, 75px);
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -189,7 +197,7 @@ nav.scrolled {
 
 .navbar-logo {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
   font-weight: 800;
   background: linear-gradient(135deg, white 0%, var(--primary) 100%);
   -webkit-background-clip: text;
@@ -202,10 +210,10 @@ nav.scrolled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
   border-radius: var(--radius);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   text-decoration: none;
   transition: var(--transition);
   cursor: pointer;
@@ -224,7 +232,7 @@ nav.scrolled {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.5);
-  background: var(--primary-dark);
+  filter: brightness(1.1);
 }
 
 .btn-outline {
@@ -246,46 +254,40 @@ nav.scrolled {
   display: flex;
   align-items: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: clamp(80px, 15vw, 120px);
+  padding-bottom: 4rem;
 }
 
 .hero-tag {
   display: inline-block;
-  padding: 0.5rem 1.25rem;
+  padding: 0.4rem 1rem;
   background: rgba(99, 102, 241, 0.1);
   color: var(--primary);
   border: 1px solid rgba(99, 102, 241, 0.2);
   border-radius: 100px;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .hero-headline {
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
   max-width: 900px;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
-  margin-bottom: 3rem;
-  max-width: 600px;
-  color: var(--text-muted);
+  font-size: clamp(1.1rem, 3vw, 1.25rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  max-width: 650px;
 }
 
 /* Grid & Cards */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2.5rem;
-}
-
-@media (max-width: 640px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .card {
@@ -298,6 +300,12 @@ nav.scrolled {
   flex-direction: column;
 }
 
+@media (max-width: 768px) {
+  .card:hover {
+    transform: translateY(-5px);
+  }
+}
+
 .card:hover {
   transform: translateY(-12px);
   border-color: var(--primary);
@@ -307,6 +315,7 @@ nav.scrolled {
 .card-image-wrapper {
   aspect-ratio: 16/10;
   overflow: hidden;
+  position: relative;
 }
 
 .card-image {
@@ -321,7 +330,7 @@ nav.scrolled {
 }
 
 .card-body {
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 2rem);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -329,13 +338,13 @@ nav.scrolled {
 
 .card-tag {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   background: rgba(99, 102, 241, 0.1);
-  color: var(--primary-light);
+  color: var(--primary);
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -361,6 +370,7 @@ nav.scrolled {
   background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .text-center { text-align: center; }
@@ -370,7 +380,7 @@ nav.scrolled {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -398,9 +408,22 @@ nav.scrolled {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  padding: 2.5rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
+}
+
+.input-group {
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  opacity: 0.9;
 }
 
 input, textarea, select {
@@ -408,14 +431,35 @@ input, textarea, select {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   color: white;
-  padding: 0.875rem 1.25rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
   font-family: inherit;
   width: 100%;
   transition: var(--transition);
+  font-size: 1rem;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--primary);
   background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+}
+
+/* Responsive Hidden Utilities */
+@media (max-width: 768px) {
+  .hidden-mobile { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .hidden-desktop { display: none !important; }
+}
+
+/* Mobile Nav Padding Fix */
+@media (max-width: 480px) {
+  nav .navbar-logo {
+     max-width: 200px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+  }
 }
